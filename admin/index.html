@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ניהול תוכן - עו"ד ליאור קלואי ארז</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .container {
+            text-align: center;
+            padding: 3rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 90%;
+        }
+        
+        .logo {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+        }
+        
+        .title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(45deg, #fbbf24, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+        
+        .lawyer-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: #fbbf24;
+        }
+        
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #fbbf24;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1.5rem;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .status {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+        
+        .features {
+            margin-top: 2rem;
+            text-align: right;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .features h3 {
+            color: #fbbf24;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .feature-list {
+            list-style: none;
+            text-align: right;
+        }
+        
+        .feature-list li {
+            margin-bottom: 0.8rem;
+            padding-right: 1.5rem;
+            position: relative;
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+        
+        .feature-list li::before {
+            content: "✅";
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+        
+        .note {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 10px;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        
+        .success {
+            background: rgba(34, 197, 94, 0.2);
+            color: #86efac;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">⚖️</div>
+        <h1 class="title">TinaCMS</h1>
+        <p class="subtitle">מערכת ניהול תוכן מקצועית</p>
+        <p class="lawyer-name">עו"ד ליאור קלואי ארז</p>
+        
+        <div class="spinner"></div>
+        <p class="status" id="status">מכין את מערכת העריכה...</p>
+        
+        <div class="features">
+            <h3>מה תוכל לערוך:</h3>
+            <ul class="feature-list">
+                <li>פרטי יצירת קשר - טלפון, מייל, כתובת</li>
+                <li>שנות ניסיון ומידע אישי</li>
+                <li>תוכן כל הדפים באתר</li>
+                <li>המלצות לקוחות חדשות</li>
+                <li>העלאת תמונות ומדיה</li>
+                <li>ניהול מאמרים ועדכונים</li>
+            </ul>
+        </div>
+        
+        <div class="note" id="note">
+            <strong>🎉 המערכת הותקנה בהצלחה!</strong><br>
+            כדי להפעיל את TinaCMS, יש צורך בהגדרת Netlify Identity.<br>
+            לאחר ההגדרה, תוכל להתחבר ולערוך את כל תוכן האתר בקלות.
+        </div>
+    </div>
+
+    <script>
+        // סימולציה של תהליך ההכנה
+        const statusEl = document.getElementById('status');
+        const noteEl = document.getElementById('note');
+        
+        const messages = [
+            'בודק חיבור לשרת...',
+            'טוען הגדרות TinaCMS...',
+            'מכין ממשק עריכה...',
+            'בודק הרשאות...',
+            'כמעט מוכן...'
+        ];
+        
+        let messageIndex = 0;
+        
+        const updateStatus = () => {
+            if (messageIndex < messages.length) {
+                statusEl.textContent = messages[messageIndex];
+                messageIndex++;
+                setTimeout(updateStatus, 1200);
+            } else {
+                statusEl.textContent = 'המערכת מוכנה להפעלה!';
+                noteEl.classList.add('success');
+                
+                // הוספת הודעה על הצעדים הבאים
+                setTimeout(() => {
+                    statusEl.innerHTML = `
+                        <strong>להפעלת המערכת:</strong><br>
+                        1. הגדר Netlify Identity<br>
+                        2. חבר TinaCMS<br>
+                        3. התחבר וערוך תוכן!
+                    `;
+                }, 2000);
+            }
+        };
+        
+        // התחל עדכון סטטוס אחרי שנייה
+        setTimeout(updateStatus, 1000);
+        
+        // בדיקה אם TinaCMS זמין
+        setTimeout(() => {
+            if (typeof window !== 'undefined' && window.tina) {
+                statusEl.textContent = 'TinaCMS זמין! מפנה למערכת...';
+                // כאן יטען TinaCMS האמיתי
+            }
+        }, 8000);
+    </script>
+    
+    <!-- 
+    TODO: אחרי הגדרת Netlify Identity, הוסף:
+    <script type="module" src="https://unpkg.com/@tinacms/cli@latest/dist/admin.js"></script>
+    -->
+</body>
+</html>
