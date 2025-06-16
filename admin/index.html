@@ -3,74 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ניהול תוכן - עו"ד ליאור קלואי ארז</title>
-    
+    <title>TinaCMS - מערכת ניהול תוכן</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
         body {
+            margin: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
         }
         
-        .container {
+        .loading-container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             text-align: center;
-            padding: 3rem;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
             max-width: 500px;
             width: 90%;
         }
         
         .logo {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+            font-size: 48px;
+            margin-bottom: 10px;
         }
         
         .title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(45deg, #fbbf24, #f59e0b);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #2c3e50;
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 10px;
         }
         
         .subtitle {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            opacity: 0.9;
-        }
-        
-        .lawyer-name {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 2rem;
-            color: #fbbf24;
+            color: #7f8c8d;
+            font-size: 18px;
+            margin-bottom: 30px;
         }
         
         .spinner {
-            width: 60px;
-            height: 60px;
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            border-top: 4px solid #fbbf24;
+            width: 50px;
+            height: 50px;
+            border: 5px solid #ecf0f1;
+            border-top: 5px solid #3498db;
             border-radius: 50%;
             animation: spin 1s linear infinite;
-            margin: 0 auto 1.5rem;
+            margin: 20px auto;
         }
         
         @keyframes spin {
@@ -79,142 +59,221 @@
         }
         
         .status {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            margin-bottom: 1rem;
+            color: #27ae60;
+            font-size: 16px;
+            margin-top: 20px;
         }
         
-        .features {
-            margin-top: 2rem;
-            text-align: right;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 1.5rem;
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        .error {
+            color: #e74c3c;
+            background: #fdf2f2;
+            border: 1px solid #fecaca;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
         }
         
-        .features h3 {
-            color: #fbbf24;
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
-        }
-        
-        .feature-list {
-            list-style: none;
+        .instructions {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
             text-align: right;
         }
         
-        .feature-list li {
-            margin-bottom: 0.8rem;
-            padding-right: 1.5rem;
-            position: relative;
-            font-size: 0.95rem;
-            opacity: 0.9;
+        .instructions h3 {
+            color: #495057;
+            margin-top: 0;
         }
         
-        .feature-list li::before {
-            content: "✅";
-            position: absolute;
-            right: 0;
-            top: 0;
-        }
-        
-        .note {
-            margin-top: 2rem;
-            padding: 1rem;
-            background: rgba(34, 197, 94, 0.1);
-            border: 1px solid rgba(34, 197, 94, 0.3);
-            border-radius: 10px;
-            font-size: 0.9rem;
-            line-height: 1.4;
-        }
-        
-        .success {
-            background: rgba(34, 197, 94, 0.2);
-            color: #86efac;
+        .instructions ol {
+            text-align: right;
+            color: #6c757d;
         }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="loading-container">
         <div class="logo">⚖️</div>
         <h1 class="title">TinaCMS</h1>
-        <p class="subtitle">מערכת ניהול תוכן מקצועית</p>
-        <p class="lawyer-name">עו"ד ליאור קלואי ארז</p>
+        <p class="subtitle">מערכת ניהול תוכן מקצועית<br>עו"ד ליאור קלואי ארז</p>
         
         <div class="spinner"></div>
-        <p class="status" id="status">מכין את מערכת העריכה...</p>
+        <p class="status" id="status">טוען את מערכת העריכה...</p>
         
-        <div class="features">
-            <h3>מה תוכל לערוך:</h3>
-            <ul class="feature-list">
-                <li>פרטי יצירת קשר - טלפון, מייל, כתובת</li>
-                <li>שנות ניסיון ומידע אישי</li>
-                <li>תוכן כל הדפים באתר</li>
-                <li>המלצות לקוחות חדשות</li>
-                <li>העלאת תמונות ומדיה</li>
-                <li>ניהול מאמרים ועדכונים</li>
-            </ul>
+        <div id="error-message" class="error" style="display: none;">
+            <strong>שגיאה בטעינת המערכת</strong><br>
+            אנא וודאו שהגדרתם משתמש ב-Netlify Identity
         </div>
         
-        <div class="note" id="note">
-            <strong>🎉 המערכת הותקנה בהצלחה!</strong><br>
-            כדי להפעיל את TinaCMS, יש צורך בהגדרת Netlify Identity.<br>
-            לאחר ההגדרה, תוכל להתחבר ולערוך את כל תוכן האתר בקלות.
+        <div class="instructions">
+            <h3>הוראות התחברות:</h3>
+            <ol>
+                <li>וודאו שקיבלתם מייל הזמנה מ-Netlify</li>
+                <li>השלימו הרשמה וקבעו סיסמה</li>
+                <li>רעננו את הדף</li>
+            </ol>
         </div>
     </div>
 
-    <script>
-        // סימולציה של תהליך ההכנה
-        const statusEl = document.getElementById('status');
-        const noteEl = document.getElementById('note');
+    <script type="module">
+        // טעינת TinaCMS
+        let attempts = 0;
+        const maxAttempts = 10;
         
-        const messages = [
-            'בודק חיבור לשרת...',
-            'טוען הגדרות TinaCMS...',
-            'מכין ממשק עריכה...',
-            'בודק הרשאות...',
-            'כמעט מוכן...'
-        ];
+        function updateStatus(message) {
+            document.getElementById('status').textContent = message;
+        }
         
-        let messageIndex = 0;
+        function showError() {
+            document.getElementById('error-message').style.display = 'block';
+            updateStatus('שגיאה בטעינת המערכת');
+        }
         
-        const updateStatus = () => {
-            if (messageIndex < messages.length) {
-                statusEl.textContent = messages[messageIndex];
-                messageIndex++;
-                setTimeout(updateStatus, 1200);
-            } else {
-                statusEl.textContent = 'המערכת מוכנה להפעלה!';
-                noteEl.classList.add('success');
+        async function initTinaCMS() {
+            try {
+                attempts++;
+                updateStatus(`מנסה להתחבר... (ניסיון ${attempts}/${maxAttempts})`);
                 
-                // הוספת הודעה על הצעדים הבאים
+                // בדיקה אם Netlify Identity זמין
+                if (typeof window.netlifyIdentity === 'undefined') {
+                    // טעינת Netlify Identity
+                    const script = document.createElement('script');
+                    script.src = 'https://identity.netlify.com/v1/netlify-identity-widget.js';
+                    script.onload = () => {
+                        setTimeout(initTinaCMS, 1000);
+                    };
+                    script.onerror = () => {
+                        if (attempts < maxAttempts) {
+                            setTimeout(initTinaCMS, 2000);
+                        } else {
+                            showError();
+                        }
+                    };
+                    document.head.appendChild(script);
+                    return;
+                }
+                
+                // אתחול Netlify Identity
+                window.netlifyIdentity.init();
+                
+                // בדיקה אם המשתמש מחובר
+                const user = window.netlifyIdentity.currentUser();
+                
+                if (!user) {
+                    updateStatus('מחכה להתחברות...');
+                    // פתיחת חלון התחברות
+                    window.netlifyIdentity.open();
+                    
+                    // האזנה לאירועי התחברות
+                    window.netlifyIdentity.on('login', () => {
+                        updateStatus('מחובר בהצלחה! טוען את המערכת...');
+                        setTimeout(() => {
+                            loadTinaCMS();
+                        }, 1000);
+                    });
+                    
+                    return;
+                }
+                
+                // המשתמש כבר מחובר - טעינת TinaCMS
+                loadTinaCMS();
+                
+            } catch (error) {
+                console.error('שגיאה באתחול:', error);
+                if (attempts < maxAttempts) {
+                    setTimeout(initTinaCMS, 2000);
+                } else {
+                    showError();
+                }
+            }
+        }
+        
+        async function loadTinaCMS() {
+            try {
+                updateStatus('טוען ממשק עריכה...');
+                
+                // טעינת TinaCMS
+                const { TinaCMS } = await import('https://cdn.jsdelivr.net/npm/@tinacms/cli@1.5.21/dist/tinacms.esm.js');
+                
+                updateStatus('מגדיר מערכת עריכה...');
+                
+                // הגדרת TinaCMS
+                const cms = new TinaCMS({
+                    enabled: true,
+                    sidebar: true,
+                    toolbar: true,
+                    media: {
+                        tina: {
+                            mediaRoot: 'images',
+                            publicFolder: '/images'
+                        }
+                    }
+                });
+                
+                updateStatus('מערכת העריכה מוכנה!');
+                
+                // הסתרת מסך הטעינה
                 setTimeout(() => {
-                    statusEl.innerHTML = `
-                        <strong>להפעלת המערכת:</strong><br>
-                        1. הגדר Netlify Identity<br>
-                        2. חבר TinaCMS<br>
-                        3. התחבר וערוך תוכן!
+                    document.body.style.display = 'none';
+                    
+                    // יצירת ממשק TinaCMS
+                    const adminDiv = document.createElement('div');
+                    adminDiv.id = 'tinacms-admin';
+                    adminDiv.style.cssText = `
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background: white;
+                        z-index: 10000;
                     `;
+                    
+                    document.body.appendChild(adminDiv);
+                    document.body.style.display = 'block';
+                    
+                    // הפעלת TinaCMS
+                    cms.enable();
+                    
+                }, 1000);
+                
+            } catch (error) {
+                console.error('שגיאה בטעינת TinaCMS:', error);
+                updateStatus('שגיאה בטעינת מערכת העריכה');
+                
+                // חלופה - הפניה לממשק עריכה פשוט
+                setTimeout(() => {
+                    showSimpleEditor();
                 }, 2000);
             }
-        };
+        }
         
-        // התחל עדכון סטטוס אחרי שנייה
-        setTimeout(updateStatus, 1000);
+        function showSimpleEditor() {
+            document.body.innerHTML = `
+                <div style="padding: 20px; font-family: Arial, sans-serif; direction: rtl;">
+                    <h1>מערכת עריכה פשוטה</h1>
+                    <p>TinaCMS עדיין בהגדרה. בינתיים, אתה יכול לערוך קבצים ישירות ב-GitHub:</p>
+                    <a href="https://github.com/YourUsername/lawyer-tina-cms" target="_blank" 
+                       style="display: inline-block; background: #007bff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">
+                        עבור ל-GitHub לעריכה
+                    </a>
+                    
+                    <h2>מה ניתן לערוך:</h2>
+                    <ul>
+                        <li>קבצי HTML - תוכן הדפים</li>
+                        <li>פרטי יצירת קשר</li>
+                        <li>תמונות ותוכן</li>
+                    </ul>
+                </div>
+            `;
+        }
         
-        // בדיקה אם TinaCMS זמין
-        setTimeout(() => {
-            if (typeof window !== 'undefined' && window.tina) {
-                statusEl.textContent = 'TinaCMS זמין! מפנה למערכת...';
-                // כאן יטען TinaCMS האמיתי
-            }
-        }, 8000);
+        // התחלת התהליך
+        updateStatus('מתחיל הגדרה...');
+        setTimeout(initTinaCMS, 1000);
+        
     </script>
-    
-    <!-- 
-    TODO: אחרי הגדרת Netlify Identity, הוסף:
-    <script type="module" src="https://unpkg.com/@tinacms/cli@latest/dist/admin.js"></script>
-    -->
 </body>
 </html>
