@@ -1,0 +1,1615 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMS מקצועי - מערכת ניהול תוכן</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.4.2/tinymce.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f8fafc;
+            direction: rtl;
+            overflow-x: hidden;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 22px;
+            font-weight: 700;
+        }
+        
+        .header-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: #667eea;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        /* Layout */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            min-height: calc(100vh - 70px);
+            max-width: 1400px;
+            margin: 0 auto;
+            gap: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+            
+            .sidebar {
+                position: fixed;
+                top: 70px;
+                right: -280px;
+                height: calc(100vh - 70px);
+                z-index: 999;
+                transition: right 0.3s ease;
+            }
+            
+            .sidebar.open {
+                right: 0;
+            }
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            background: white;
+            border-left: 1px solid #e2e8f0;
+            padding: 25px 0;
+            overflow-y: auto;
+        }
+        
+        .sidebar-section {
+            margin-bottom: 30px;
+        }
+        
+        .sidebar-title {
+            color: #1e293b;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+            padding: 0 25px;
+        }
+        
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 25px;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-right: 3px solid transparent;
+            font-weight: 500;
+        }
+        
+        .nav-item:hover {
+            background: #f1f5f9;
+            color: #334155;
+        }
+        
+        .nav-item.active {
+            background: linear-gradient(90deg, #eff6ff 0%, #dbeafe 100%);
+            color: #2563eb;
+            border-right-color: #2563eb;
+        }
+        
+        .nav-item i {
+            width: 20px;
+            text-align: center;
+            font-size: 16px;
+        }
+        
+        /* Main Content */
+        .content {
+            background: #f8fafc;
+            padding: 30px;
+            overflow-y: auto;
+        }
+        
+        .content-header {
+            margin-bottom: 30px;
+        }
+        
+        .content-title {
+            font-size: 32px;
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: 8px;
+        }
+        
+        .content-subtitle {
+            font-size: 16px;
+            color: #64748b;
+            font-weight: 500;
+        }
+        
+        /* Sections */
+        .section {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .section.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e2e8f0;
+            margin-bottom: 25px;
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f1f5f9;
+        }
+        
+        .card-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1e293b;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* Form Elements */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+        }
+        
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+            font-family: inherit;
+        }
+        
+        /* Rich Text Editor */
+        .editor-container {
+            margin-bottom: 25px;
+        }
+        
+        .tox-tinymce {
+            border-radius: 12px !important;
+            border: 2px solid #e5e7eb !important;
+        }
+        
+        .tox-tinymce:focus-within {
+            border-color: #3b82f6 !important;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1) !important;
+        }
+        
+        /* Media Upload */
+        .media-upload {
+            border: 3px dashed #d1d5db;
+            border-radius: 16px;
+            padding: 60px 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #fafafa;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .media-upload:hover {
+            border-color: #3b82f6;
+            background: #eff6ff;
+        }
+        
+        .media-upload.dragover {
+            border-color: #10b981;
+            background: #ecfdf5;
+            transform: scale(1.02);
+        }
+        
+        .upload-icon {
+            font-size: 48px;
+            color: #9ca3af;
+            margin-bottom: 20px;
+        }
+        
+        .upload-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 8px;
+        }
+        
+        .upload-hint {
+            font-size: 14px;
+            color: #6b7280;
+        }
+        
+        /* Media Gallery */
+        .media-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .media-item {
+            position: relative;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .media-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .media-preview {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            background: #f3f4f6;
+        }
+        
+        .media-info {
+            padding: 15px;
+        }
+        
+        .media-name {
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 5px;
+            font-size: 14px;
+            word-break: break-word;
+        }
+        
+        .media-size {
+            font-size: 12px;
+            color: #6b7280;
+        }
+        
+        .media-actions {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            display: flex;
+            gap: 5px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .media-item:hover .media-actions {
+            opacity: 1;
+        }
+        
+        .media-action {
+            width: 32px;
+            height: 32px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+        
+        .media-action:hover {
+            background: rgba(0,0,0,0.9);
+            transform: scale(1.1);
+        }
+        
+        .media-action.delete {
+            background: rgba(239, 68, 68, 0.8);
+        }
+        
+        .media-action.delete:hover {
+            background: rgba(239, 68, 68, 1);
+        }
+        
+        /* Page Builder */
+        .page-builder {
+            border: 2px solid #e5e7eb;
+            border-radius: 16px;
+            background: white;
+            min-height: 400px;
+        }
+        
+        .builder-toolbar {
+            padding: 15px 20px;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            background: #f9fafb;
+            border-radius: 16px 16px 0 0;
+        }
+        
+        .builder-btn {
+            padding: 8px 16px;
+            border: 1px solid #d1d5db;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .builder-btn:hover {
+            background: #f3f4f6;
+            border-color: #9ca3af;
+        }
+        
+        .builder-content {
+            padding: 20px;
+            min-height: 300px;
+        }
+        
+        /* Status Messages */
+        .status-message {
+            padding: 16px 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            display: none;
+            align-items: center;
+            gap: 12px;
+            font-weight: 500;
+        }
+        
+        .status-message.success {
+            background: #ecfdf5;
+            color: #065f46;
+            border: 1px solid #a7f3d0;
+        }
+        
+        .status-message.error {
+            background: #fef2f2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
+        }
+        
+        .status-message.info {
+            background: #eff6ff;
+            color: #1e40af;
+            border: 1px solid #bfdbfe;
+        }
+        
+        /* Loading */
+        .loading {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            padding: 40px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f4f6;
+            border-top: 4px solid #3b82f6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .content {
+                padding: 20px 15px;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .media-gallery {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 15px;
+            }
+        }
+        
+        /* Tabs */
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid #f1f5f9;
+            margin-bottom: 25px;
+        }
+        
+        .tab {
+            padding: 12px 20px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            font-weight: 600;
+            color: #64748b;
+            transition: all 0.3s ease;
+        }
+        
+        .tab:hover {
+            color: #334155;
+        }
+        
+        .tab.active {
+            color: #2563eb;
+            border-bottom-color: #2563eb;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-cog"></i>
+                <span>CMS מקצועי</span>
+            </div>
+            <div class="header-actions">
+                <button class="btn btn-primary" onclick="saveAllChanges()">
+                    <i class="fas fa-save"></i>
+                    שמור שינויים
+                </button>
+                <a href="https://courageous-hamster-922aec.netlify.app/" target="_blank" class="btn btn-secondary">
+                    <i class="fas fa-external-link-alt"></i>
+                    צפה באתר
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Layout -->
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-title">ניהול תוכן</div>
+                <div class="nav-item active" onclick="showSection('dashboard')">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>דשבורד</span>
+                </div>
+                <div class="nav-item" onclick="showSection('pages')">
+                    <i class="fas fa-file-alt"></i>
+                    <span>דפים</span>
+                </div>
+                <div class="nav-item" onclick="showSection('contact')">
+                    <i class="fas fa-address-book"></i>
+                    <span>פרטי יצירת קשר</span>
+                </div>
+                <div class="nav-item" onclick="showSection('services')">
+                    <i class="fas fa-briefcase"></i>
+                    <span>תחומי התמחות</span>
+                </div>
+                <div class="nav-item" onclick="showSection('testimonials')">
+                    <i class="fas fa-quote-left"></i>
+                    <span>המלצות לקוחות</span>
+                </div>
+            </div>
+            
+            <div class="sidebar-section">
+                <div class="sidebar-title">מדיה ועיצוב</div>
+                <div class="nav-item" onclick="showSection('media')">
+                    <i class="fas fa-images"></i>
+                    <span>ספריית מדיה</span>
+                </div>
+                <div class="nav-item" onclick="showSection('design')">
+                    <i class="fas fa-palette"></i>
+                    <span>עיצוב ונושא</span>
+                </div>
+            </div>
+            
+            <div class="sidebar-section">
+                <div class="sidebar-title">הגדרות</div>
+                <div class="nav-item" onclick="showSection('seo')">
+                    <i class="fas fa-search"></i>
+                    <span>SEO</span>
+                </div>
+                <div class="nav-item" onclick="showSection('analytics')">
+                    <i class="fas fa-chart-line"></i>
+                    <span>אנליטיקס</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content">
+            <div id="statusMessage" class="status-message"></div>
+            <div id="loading" class="loading">
+                <div class="spinner"></div>
+                <span>שומר שינויים...</span>
+            </div>
+
+            <!-- Dashboard Section -->
+            <div id="dashboard" class="section active">
+                <div class="content-header">
+                    <h1 class="content-title">דשבורד ניהול האתר</h1>
+                    <p class="content-subtitle">ברוכים הבאים למערכת ניהול התוכן המקצועית</p>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-bottom: 30px;">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-eye" style="color: #3b82f6;"></i>
+                                סטטיסטיקות האתר
+                            </h3>
+                        </div>
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
+                            <div style="text-align: center;">
+                                <div style="font-size: 32px; font-weight: 800; color: #10b981; margin-bottom: 5px;">247</div>
+                                <div style="color: #6b7280;">מבקרים החודש</div>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="font-size: 32px; font-weight: 800; color: #f59e0b; margin-bottom: 5px;">89</div>
+                                <div style="color: #6b7280;">פניות חדשות</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-tasks" style="color: #8b5cf6;"></i>
+                                פעולות מהירות
+                            </h3>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 10px;">
+                            <button class="btn btn-primary" onclick="showSection('pages')" style="justify-content: flex-start;">
+                                <i class="fas fa-plus"></i>
+                                הוסף דף חדש
+                            </button>
+                            <button class="btn btn-secondary" onclick="showSection('testimonials')" style="justify-content: flex-start;">
+                                <i class="fas fa-quote-left"></i>
+                                הוסף המלצה
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-clock" style="color: #ef4444;"></i>
+                            עדכונים אחרונים
+                        </h3>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 15px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #f8fafc; border-radius: 8px;">
+                            <span>עודכן דף "אודות" - תוכן חדש נוסף</span>
+                            <span style="color: #6b7280; font-size: 14px;">לפני 2 שעות</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #f8fafc; border-radius: 8px;">
+                            <span>הועלתה תמונה חדשה למשרד</span>
+                            <span style="color: #6b7280; font-size: 14px;">לפני 4 שעות</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pages Section -->
+            <div id="pages" class="section">
+                <div class="content-header">
+                    <h1 class="content-title">ניהול דפים</h1>
+                    <p class="content-subtitle">ערוך ונהל את כל דפי האתר</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-file-alt"></i>
+                            עריכת דף
+                        </h3>
+                        <button class="btn btn-primary" onclick="addNewPage()">
+                            <i class="fas fa-plus"></i>
+                            דף חדש
+                        </button>
+                    </div>
+
+                    <div class="tabs">
+                        <div class="tab active" onclick="switchTab('home-tab')">דף הבית</div>
+                        <div class="tab" onclick="switchTab('about-tab')">אודות</div>
+                        <div class="tab" onclick="switchTab('services-tab')">שירותים</div>
+                        <div class="tab" onclick="switchTab('contact-tab')">צור קשר</div>
+                    </div>
+
+                    <div id="home-tab" class="tab-content active">
+                        <div class="form-group">
+                            <label class="form-label">כותרת הדף</label>
+                            <input type="text" class="form-input" id="homeTitle" value="ייצוג משפטי מקצועי ואמין">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">תוכן עיקרי</label>
+                            <div class="editor-container">
+                                <textarea id="homeContent" class="rich-editor">
+                                    <h2>ברוכים הבאים לאתר של עו"ד ליאור קלואי ארז</h2>
+                                    <p>עם 20 שנות ניסיון בתחום המשפט, אני מתמחה במתן פתרונות משפטיים מותאמים אישית. השירות שלנו כולל ייעוץ מקצועי, ליווי צמוד ויחס אישי לכל לקוח.</p>
+                                    <p>המטרה שלנו היא לספק שירות משפטי מעולה תוך שמירה על יחסי אמון ושקיפות מלאה עם הלקוחות.</p>
+                                </textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="about-tab" class="tab-content">
+                        <div class="form-group">
+                            <label class="form-label">כותרת דף אודות</label>
+                            <input type="text" class="form-input" value="אודות עו״ד ליאור קלואי ארז">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">תוכן דף אודות</label>
+                            <div class="editor-container">
+                                <textarea id="aboutContent" class="rich-editor">
+                                    <h2>ניסיון וומומחיות</h2>
+                                    <p>עו״ד ליאור קלואי ארז מביאה ניסיון עשיר ומגוון בתחומי משפט שונים...</p>
+                                </textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="services-tab" class="tab-content">
+                        <div class="form-group">
+                            <label class="form-label">כותרת דף שירותים</label>
+                            <input type="text" class="form-input" value="השירותים שלנו">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">תוכן דף שירותים</label>
+                            <div class="editor-container">
+                                <textarea id="servicesContent" class="rich-editor">
+                                    <h2>תחומי התמחות</h2>
+                                    <p>אנחנו מתמחים במגוון רחב של תחומי משפט...</p>
+                                </textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="contact-tab" class="tab-content">
+                        <div class="form-group">
+                            <label class="form-label">כותרת דף צור קשר</label>
+                            <input type="text" class="form-input" value="צור קשר">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">תוכן דף צור קשר</label>
+                            <div class="editor-container">
+                                <textarea id="contactContent" class="rich-editor">
+                                    <h2>נשמח לעמוד לשירותכם</h2>
+                                    <p>צרו קשר לקביעת פגישת ייעוץ ללא התחייבות...</p>
+                                </textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Section -->
+            <div id="contact" class="section">
+                <div class="content-header">
+                    <h1 class="content-title">פרטי יצירת קשר</h1>
+                    <p class="content-subtitle">עדכן את פרטי המשרד והיצירת קשר</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-address-book"></i>
+                            פרטים אישיים ומקצועיים
+                        </h3>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">שם מלא</label>
+                            <input type="text" class="form-input" id="lawyerName" value="עו״ד ליאור קלואי ארז">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">שנות ניסיון</label>
+                            <input type="number" class="form-input" id="experience" value="20">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">מספר טלפון</label>
+                            <input type="tel" class="form-input" id="phone" value="0524694158">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">כתובת אימייל</label>
+                            <input type="email" class="form-input" id="email" value="info@lior-law.co.il">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">כתובת המשרד</label>
+                            <input type="text" class="form-input" id="address" value="הרימון 5, חריש">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">שעות פעילות</label>
+                            <input type="text" class="form-input" id="workingHours" value="ראשון-חמישי: 9:00-18:00">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">תיאור קצר למשרד</label>
+                        <textarea class="form-input form-textarea" id="officeDescription">משרד עורכי דין מקצועי המתמחה במגוון תחומי משפט. אנו מעניקים שירות אישי ומקצועי לכל לקוח.</textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Services Section -->
+            <div id="services" class="section">
+                <div class="content-header">
+                    <h1 class="content-title">תחומי התמחות</h1>
+                    <p class="content-subtitle">נהל את השירותים והתחומים המקצועיים</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-briefcase"></i>
+                            רשימת השירותים
+                        </h3>
+                        <button class="btn btn-primary" onclick="addService()">
+                            <i class="fas fa-plus"></i>
+                            הוסף שירות
+                        </button>
+                    </div>
+
+                    <div id="servicesList">
+                        <div class="form-group" style="display: flex; gap: 15px; align-items: end;">
+                            <div style="flex: 1;">
+                                <label class="form-label">תחום התמחות</label>
+                                <input type="text" class="form-input" value="משפט מסחרי - הקמת חברות, חוזים עסקיים">
+                            </div>
+                            <button class="btn" style="background: #ef4444; color: white; height: 48px;" onclick="this.parentElement.remove()">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="form-group" style="display: flex; gap: 15px; align-items: end;">
+                            <div style="flex: 1;">
+                                <label class="form-label">תחום התמחות</label>
+                                <input type="text" class="form-input" value="משפט נדל״ן - עסקאות, שכירות, ועדות תכנון">
+                            </div>
+                            <button class="btn" style="background: #ef4444; color: white; height: 48px;" onclick="this.parentElement.remove()">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="form-group" style="display: flex; gap: 15px; align-items: end;">
+                            <div style="flex: 1;">
+                                <label class="form-label">תחום התמחות</label>
+                                <input type="text" class="form-input" value="משפט משפחה - גירושין, הסדרי ראייה">
+                            </div>
+                            <button class="btn" style="background: #ef4444; color: white; height: 48px;" onclick="this.parentElement.remove()">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="form-group" style="display: flex; gap: 15px; align-items: end;">
+                            <div style="flex: 1;">
+                                <label class="form-label">תחום התמחות</label>
+                                <input type="text" class="form-input" value="משפט פלילי - ייצוג בכל ההליכים">
+                            </div>
+                            <button class="btn" style="background: #ef4444; color: white; height: 48px;" onclick="this.parentElement.remove()">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonials Section -->
+            <div id="testimonials" class="section">
+                <div class="content-header">
+                    <h1 class="content-title">המלצות לקוחות</h1>
+                    <p class="content-subtitle">נהל המלצות ופידבק מלקוחות</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-quote-left"></i>
+                            המלצות קיימות
+                        </h3>
+                        <button class="btn btn-primary" onclick="addTestimonial()">
+                            <i class="fas fa-plus"></i>
+                            הוסף המלצה
+                        </button>
+                    </div>
+
+                    <div id="testimonialsList">
+                        <div class="card" style="background: #f8fafc; margin-bottom: 20px; position: relative;">
+                            <button style="position: absolute; top: 15px; left: 15px; background: #ef4444; color: white; border: none; border-radius: 50%; width: 32px; height: 32px; cursor: pointer;" onclick="this.parentElement.remove()">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label class="form-label">שם הלקוח</label>
+                                    <input type="text" class="form-input" value="דוד כהן">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">תחום</label>
+                                    <input type="text" class="form-input" value="משפט מסחרי">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">תוכן ההמלצה</label>
+                                <textarea class="form-input form-textarea">שירות מקצועי ואמין. עו״ד ליאור ליוותה אותי לאורך כל התהליך בהקמת החברה שלי. מומלצת ביותר!</textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="card" style="background: #f8fafc; margin-bottom: 20px; position: relative;">
+                            <button style="position: absolute; top: 15px; left: 15px; background: #ef4444; color: white; border: none; border-radius: 50%; width: 32px; height: 32px; cursor: pointer;" onclick="this.parentElement.remove()">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label class="form-label">שם הלקוח</label>
+                                    <input type="text" class="form-input" value="שרה לוי">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">תחום</label>
+                                    <input type="text" class="form-input" value="משפט נדל״ן">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">תוכן ההמלצה</label>
+                                <textarea class="form-input form-textarea">עזרה לי במכירת הדירה בצורה חלקה ומקצועית. ייעוץ מעולה וליווי צמוד!</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Media Section -->
+            <div id="media" class="section">
+                <div class="content-header">
+                    <h1 class="content-title">ספריית מדיה</h1>
+                    <p class="content-subtitle">נהל תמונות, סרטונים וקבצים</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            העלאת קבצים
+                        </h3>
+                    </div>
+
+                    <div class="media-upload" onclick="document.getElementById('mediaInput').click()">
+                        <div class="upload-icon">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                        </div>
+                        <div class="upload-text">לחץ להעלאת קבצים או גרור לכאן</div>
+                        <div class="upload-hint">תמונות, סרטונים, PDF וקבצי משרד - עד 10MB לקובץ</div>
+                    </div>
+
+                    <input type="file" id="mediaInput" multiple accept="image/*,video/*,.pdf,.doc,.docx,.ppt,.pptx" style="display: none;">
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-images"></i>
+                            קבצי מדיה
+                        </h3>
+                        <div style="display: flex; gap: 10px;">
+                            <select class="form-input" style="width: auto;">
+                                <option>כל הקבצים</option>
+                                <option>תמונות</option>
+                                <option>סרטונים</option>
+                                <option>מסמכים</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div id="mediaGallery" class="media-gallery">
+                        <!-- Media items will be added here dynamically -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Design Section -->
+            <div id="design" class="section">
+                <div class="content-header">
+                    <h1 class="content-title">עיצוב ונושא</h1>
+                    <p class="content-subtitle">התאם את המראה והתחושה של האתר</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-palette"></i>
+                            צבעי האתר
+                        </h3>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">צבע ראשי</label>
+                            <div style="display: flex; gap: 10px; align-items: center;">
+                                <input type="color" value="#667eea" style="width: 60px; height: 48px; border: none; border-radius: 8px;">
+                                <input type="text" class="form-input" value="#667eea" style="flex: 1;">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">צבע משני</label>
+                            <div style="display: flex; gap: 10px; align-items: center;">
+                                <input type="color" value="#764ba2" style="width: 60px; height: 48px; border: none; border-radius: 8px;">
+                                <input type="text" class="form-input" value="#764ba2" style="flex: 1;">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">צבע רקע</label>
+                            <div style="display: flex; gap: 10px; align-items: center;">
+                                <input type="color" value="#ffffff" style="width: 60px; height: 48px; border: none; border-radius: 8px;">
+                                <input type="text" class="form-input" value="#ffffff" style="flex: 1;">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">צבע טקסט</label>
+                            <div style="display: flex; gap: 10px; align-items: center;">
+                                <input type="color" value="#2c3e50" style="width: 60px; height: 48px; border: none; border-radius: 8px;">
+                                <input type="text" class="form-input" value="#2c3e50" style="flex: 1;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-font"></i>
+                            גופנים
+                        </h3>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">גופן כותרות</label>
+                            <select class="form-input">
+                                <option>Heebo</option>
+                                <option>Rubik</option>
+                                <option>Assistant</option>
+                                <option>Open Sans Hebrew</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">גופן טקסט רגיל</label>
+                            <select class="form-input">
+                                <option>Heebo</option>
+                                <option>Rubik</option>
+                                <option>Assistant</option>
+                                <option>Open Sans Hebrew</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SEO Section -->
+            <div id="seo" class="section">
+                <div class="content-header">
+                    <h1 class="content-title">SEO ומטא נתונים</h1>
+                    <p class="content-subtitle">שפר את הנראות באתרי חיפוש</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-search"></i>
+                            הגדרות SEO בסיסיות
+                        </h3>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">כותרת האתר (Title)</label>
+                        <input type="text" class="form-input" value="עו״ד ליאור קלואי ארז - ייצוג משפטי מקצועי בחריש">
+                        <small style="color: #6b7280; margin-top: 5px; display: block;">עד 60 תווים (כרגע: 49)</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">תיאור האתר (Meta Description)</label>
+                        <textarea class="form-input form-textarea">עו״ד ליאור קלואי ארז מציעה שירותים משפטיים מקצועיים בחריש. התמחות במשפט מסחרי, נדל״ן, משפחה ופלילי. ייעוץ ראשון ללא תשלום.</textarea>
+                        <small style="color: #6b7280; margin-top: 5px; display: block;">עד 160 תווים (כרגע: 127)</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">מילות מפתח</label>
+                        <input type="text" class="form-input" value="עורך דין חריש, משפט מסחרי, משפט נדל״ן, עו״ד ליאור קלואי ארז">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analytics Section -->
+            <div id="analytics" class="section">
+                <div class="content-header">
+                    <h1 class="content-title">אנליטיקס וסטטיסטיקות</h1>
+                    <p class="content-subtitle">עקוב אחר ביצועי האתר</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-chart-line"></i>
+                            סטטיסטיקות האתר
+                        </h3>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 30px;">
+                        <div style="text-align: center; padding: 25px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 12px;">
+                            <div style="font-size: 36px; font-weight: 800; margin-bottom: 8px;">1,247</div>
+                            <div>מבקרים החודש</div>
+                        </div>
+                        
+                        <div style="text-align: center; padding: 25px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; border-radius: 12px;">
+                            <div style="font-size: 36px; font-weight: 800; margin-bottom: 8px;">189</div>
+                            <div>פניות חדשות</div>
+                        </div>
+                        
+                        <div style="text-align: center; padding: 25px; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; border-radius: 12px;">
+                            <div style="font-size: 36px; font-weight: 800; margin-bottom: 8px;">3:42</div>
+                            <div>זמן ממוצע באתר</div>
+                        </div>
+                        
+                        <div style="text-align: center; padding: 25px; background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); color: white; border-radius: 12px;">
+                            <div style="font-size: 36px; font-weight: 800; margin-bottom: 8px;">76%</div>
+                            <div>משתמשים חוזרים</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Google Analytics ID</label>
+                        <input type="text" class="form-input" placeholder="G-XXXXXXXXXX">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize TinyMCE editors
+        document.addEventListener('DOMContentLoaded', function() {
+            tinymce.init({
+                selector: '.rich-editor',
+                height: 400,
+                menubar: false,
+                plugins: [
+                    'advlist', 'autolink', 'lists', 'link', 'image', 'charmap',
+                    'preview', 'anchor', 'searchreplace', 'visualblocks', 'code',
+                    'fullscreen', 'insertdatetime', 'media', 'table', 'help', 'wordcount'
+                ],
+                toolbar: 'undo redo | blocks | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
+                content_style: 'body { font-family: Heebo, Arial, sans-serif; font-size: 16px; direction: rtl; }',
+                language: 'he_IL',
+                directionality: 'rtl'
+            });
+
+            // Load saved data
+            loadSavedData();
+        });
+
+        // Navigation
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remove active class from nav items
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Add active class to clicked nav item
+            event.target.classList.add('active');
+
+            // Update header based on section
+            updateContentHeader(sectionId);
+        }
+
+        function updateContentHeader(sectionId) {
+            const headers = {
+                dashboard: { title: 'דשבורד ניהול האתר', subtitle: 'ברוכים הבאים למערכת ניהול התוכן המקצועית' },
+                pages: { title: 'ניהול דפים', subtitle: 'ערוך ונהל את כל דפי האתר' },
+                contact: { title: 'פרטי יצירת קשר', subtitle: 'עדכן את פרטי המשרד והיצירת קשר' },
+                services: { title: 'תחומי התמחות', subtitle: 'נהל את השירותים והתחומים המקצועיים' },
+                testimonials: { title: 'המלצות לקוחות', subtitle: 'נהל המלצות ופידבק מלקוחות' },
+                media: { title: 'ספריית מדיה', subtitle: 'נהל תמונות, סרטונים וקבצים' },
+                design: { title: 'עיצוב ונושא', subtitle: 'התאם את המראה והתחושה של האתר' },
+                seo: { title: 'SEO ומטא נתונים', subtitle: 'שפר את הנראות באתרי חיפוש' },
+                analytics: { title: 'אנליטיקס וסטטיסטיקות', subtitle: 'עקוב אחר ביצועי האתר' }
+            };
+
+            const header = headers[sectionId];
+            if (header) {
+                const titleElement = document.querySelector(`#${sectionId} .content-title`);
+                const subtitleElement = document.querySelector(`#${sectionId} .content-subtitle`);
+                
+                if (titleElement) titleElement.textContent = header.title;
+                if (subtitleElement) subtitleElement.textContent = header.subtitle;
+            }
+        }
+
+        // Tab switching
+        function switchTab(tabId) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from tabs
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabId).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        // Add new service
+        function addService() {
+            const servicesList = document.getElementById('servicesList');
+            const newService = document.createElement('div');
+            newService.className = 'form-group';
+            newService.style.cssText = 'display: flex; gap: 15px; align-items: end;';
+            newService.innerHTML = `
+                <div style="flex: 1;">
+                    <label class="form-label">תחום התמחות</label>
+                    <input type="text" class="form-input" placeholder="הכנס תחום התמחות חדש">
+                </div>
+                <button class="btn" style="background: #ef4444; color: white; height: 48px;" onclick="this.parentElement.remove()">
+                    <i class="fas fa-trash"></i>
+                </button>
+            `;
+            servicesList.appendChild(newService);
+        }
+
+        // Add new testimonial
+        function addTestimonial() {
+            const testimonialsList = document.getElementById('testimonialsList');
+            const newTestimonial = document.createElement('div');
+            newTestimonial.className = 'card';
+            newTestimonial.style.cssText = 'background: #f8fafc; margin-bottom: 20px; position: relative;';
+            newTestimonial.innerHTML = `
+                <button style="position: absolute; top: 15px; left: 15px; background: #ef4444; color: white; border: none; border-radius: 50%; width: 32px; height: 32px; cursor: pointer;" onclick="this.parentElement.remove()">
+                    <i class="fas fa-times"></i>
+                </button>
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label">שם הלקוח</label>
+                        <input type="text" class="form-input" placeholder="שם הלקוח">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">תחום</label>
+                        <input type="text" class="form-input" placeholder="תחום משפטי">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">תוכן ההמלצה</label>
+                    <textarea class="form-input form-textarea" placeholder="כתוב כאן את תוכן ההמלצה..."></textarea>
+                </div>
+            `;
+            testimonialsList.appendChild(newTestimonial);
+        }
+
+        // Media upload handling
+        document.getElementById('mediaInput').addEventListener('change', function(e) {
+            const files = e.target.files;
+            for (let file of files) {
+                addMediaItem(file);
+            }
+        });
+
+        // Drag and drop for media upload
+        const mediaUpload = document.querySelector('.media-upload');
+        
+        mediaUpload.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            this.classList.add('dragover');
+        });
+        
+        mediaUpload.addEventListener('dragleave', function(e) {
+            e.preventDefault();
+            this.classList.remove('dragover');
+        });
+        
+        mediaUpload.addEventListener('drop', function(e) {
+            e.preventDefault();
+            this.classList.remove('dragover');
+            
+            const files = e.dataTransfer.files;
+            for (let file of files) {
+                addMediaItem(file);
+            }
+        });
+
+        function addMediaItem(file) {
+            const gallery = document.getElementById('mediaGallery');
+            const mediaItem = document.createElement('div');
+            mediaItem.className = 'media-item';
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const isImage = file.type.startsWith('image/');
+                const isVideo = file.type.startsWith('video/');
+                
+                let preview = '';
+                if (isImage) {
+                    preview = `<img src="${e.target.result}" class="media-preview" alt="${file.name}">`;
+                } else if (isVideo) {
+                    preview = `<video src="${e.target.result}" class="media-preview" controls></video>`;
+                } else {
+                    preview = `<div class="media-preview" style="display: flex; align-items: center; justify-content: center; background: #f3f4f6; color: #6b7280;">
+                        <i class="fas fa-file" style="font-size: 48px;"></i>
+                    </div>`;
+                }
+
+                mediaItem.innerHTML = `
+                    ${preview}
+                    <div class="media-info">
+                        <div class="media-name">${file.name}</div>
+                        <div class="media-size">${formatFileSize(file.size)}</div>
+                    </div>
+                    <div class="media-actions">
+                        <button class="media-action" onclick="copyMediaLink('${file.name}')">
+                            <i class="fas fa-link"></i>
+                        </button>
+                        <button class="media-action delete" onclick="this.closest('.media-item').remove()">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `;
+                
+                gallery.appendChild(mediaItem);
+            };
+            
+            reader.readAsDataURL(file);
+        }
+
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        function copyMediaLink(fileName) {
+            const link = `images/${fileName}`;
+            navigator.clipboard.writeText(link).then(() => {
+                showMessage('קישור הקובץ הועתק!', 'success');
+            });
+        }
+
+        // Save all changes
+        function saveAllChanges() {
+            const loading = document.getElementById('loading');
+            loading.style.display = 'flex';
+
+            // Collect all data
+            const websiteData = {
+                contact: {
+                    lawyerName: document.getElementById('lawyerName')?.value || '',
+                    experience: document.getElementById('experience')?.value || '',
+                    phone: document.getElementById('phone')?.value || '',
+                    email: document.getElementById('email')?.value || '',
+                    address: document.getElementById('address')?.value || '',
+                    workingHours: document.getElementById('workingHours')?.value || '',
+                    officeDescription: document.getElementById('officeDescription')?.value || ''
+                },
+                pages: {
+                    home: {
+                        title: document.getElementById('homeTitle')?.value || '',
+                        content: tinymce.get('homeContent')?.getContent() || ''
+                    }
+                },
+                services: [],
+                testimonials: [],
+                lastUpdated: new Date().toISOString()
+            };
+
+            // Collect services
+            document.querySelectorAll('#servicesList .form-input').forEach(input => {
+                if (input.value.trim()) {
+                    websiteData.services.push(input.value);
+                }
+            });
+
+            // Collect testimonials
+            document.querySelectorAll('#testimonialsList .card').forEach(card => {
+                const inputs = card.querySelectorAll('input');
+                const textarea = card.querySelector('textarea');
+                
+                if (inputs.length >= 2 && textarea) {
+                    const name = inputs[0].value;
+                    const field = inputs[1].value;
+                    const content = textarea.value;
+                    
+                    if (name && content) {
+                        websiteData.testimonials.push({ name, field, content });
+                    }
+                }
+            });
+
+            // Save to localStorage
+            localStorage.setItem('professionalCmsData', JSON.stringify(websiteData));
+
+            setTimeout(() => {
+                loading.style.display = 'none';
+                showMessage('השינויים נשמרו בהצלחה! האתר יתעדכן תוך מספר דקות.', 'success');
+            }, 2000);
+        }
+
+        // Show status message
+        function showMessage(text, type = 'info') {
+            const message = document.getElementById('statusMessage');
+            message.className = `status-message ${type}`;
+            message.textContent = text;
+            message.style.display = 'flex';
+
+            setTimeout(() => {
+                message.style.display = 'none';
+            }, 5000);
+        }
+
+        // Load saved data
+        function loadSavedData() {
+            const savedData = localStorage.getItem('professionalCmsData');
+            if (savedData) {
+                try {
+                    const data = JSON.parse(savedData);
+                    
+                    // Load contact data
+                    if (data.contact) {
+                        Object.keys(data.contact).forEach(key => {
+                            const element = document.getElementById(key);
+                            if (element) {
+                                element.value = data.contact[key];
+                            }
+                        });
+                    }
+
+                    // Load page data
+                    if (data.pages && data.pages.home) {
+                        const homeTitle = document.getElementById('homeTitle');
+                        if (homeTitle) homeTitle.value = data.pages.home.title;
+                        
+                        // Set TinyMCE content when editor is ready
+                        setTimeout(() => {
+                            const editor = tinymce.get('homeContent');
+                            if (editor) {
+                                editor.setContent(data.pages.home.content);
+                            }
+                        }, 1000);
+                    }
+
+                    showMessage('נתונים נטענו בהצלחה', 'success');
+                } catch (e) {
+                    showMessage('שגיאה בטעינת הנתונים השמורים', 'error');
+                }
+            }
+        }
+
+        // Auto-save every 30 seconds
+        setInterval(() => {
+            const data = localStorage.getItem('professionalCmsData');
+            if (data) {
+                console.log('Auto-saving data...');
+                // Here you could send data to server
+            }
+        }, 30000);
+
+        // Add new page
+        function addNewPage() {
+            const pageName = prompt('הכנס שם לדף החדש:');
+            if (pageName) {
+                const tabs = document.querySelector('.tabs');
+                const newTab = document.createElement('div');
+                newTab.className = 'tab';
+                newTab.onclick = () => switchTab(`${pageName.toLowerCase()}-tab`);
+                newTab.textContent = pageName;
+                tabs.appendChild(newTab);
+
+                // Create corresponding tab content
+                const tabContent = document.createElement('div');
+                tabContent.id = `${pageName.toLowerCase()}-tab`;
+                tabContent.className = 'tab-content';
+                tabContent.innerHTML = `
+                    <div class="form-group">
+                        <label class="form-label">כותרת הדף</label>
+                        <input type="text" class="form-input" value="${pageName}">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">תוכן הדף</label>
+                        <div class="editor-container">
+                            <textarea class="rich-editor">
+                                <h2>${pageName}</h2>
+                                <p>תוכן הדף ${pageName}...</p>
+                            </textarea>
+                        </div>
+                    </div>
+                `;
+                
+                document.querySelector('#contact-tab').parentNode.appendChild(tabContent);
+                
+                // Initialize TinyMCE for the new editor
+                tinymce.init({
+                    selector: `#${pageName.toLowerCase()}-tab .rich-editor`,
+                    height: 400,
+                    menubar: false,
+                    plugins: [
+                        'advlist', 'autolink', 'lists', 'link', 'image', 'charmap',
+                        'preview', 'anchor', 'searchreplace', 'visualblocks', 'code',
+                        'fullscreen', 'insertdatetime', 'media', 'table', 'help', 'wordcount'
+                    ],
+                    toolbar: 'undo redo | blocks | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
+                    content_style: 'body { font-family: Heebo, Arial, sans-serif; font-size: 16px; direction: rtl; }',
+                    language: 'he_IL',
+                    directionality: 'rtl'
+                });
+
+                showMessage(`דף "${pageName}" נוסף בהצלחה!`, 'success');
+            }
+        }
+    </script>
+</body>
+</html>
