@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>צור קשר - עו״ד ליאור קלואי ארז</title>
+    <meta name="description" content="צור קשר עם עו״ד ליאור קלואי ארז. ייעוץ משפטי מקצועי, פגישות אישיות ושירות מהיר ואמין">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚖️</text></svg>">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-menu a:hover, .nav-menu a.active {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, rgba(30,60,114,0.95), rgba(42,82,152,0.95)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><rect fill="%23f0f8ff" width="1200" height="400"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 4rem 0;
+            position: relative;
+        }
+        
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Quick Contact Bar */
+        .quick-contact {
+            background: #f8f9fa;
+            padding: 2rem 0;
+        }
+        
+        .quick-contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+        
+        .quick-contact-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .quick-contact-item:hover {
+            border-color: #ffd700;
+            transform: translateY(-5px);
+        }
+        
+        .contact-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #1e3c72;
+        }
+        
+        .quick-contact-item h3 {
+            color: #1e3c72;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-link {
+            color: #1e3c72;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-link:hover {
+            color: #ffd700;
+        }
+        
+        .contact-hours {
+            color: #666;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        /* Main Contact Section */
+        .contact-main {
+            padding: 4rem 0;
+            background: white;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+        
+        /* Contact Form */
+        .contact-form {
+            background: #f8f9fa;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        
+        .contact-form h3 {
+            color: #1e3c72;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: bold;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #1e3c72;
+            box-shadow: 0 0 10px rgba(30,60,114,0.2);
+        }
+        
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        
+        .urgency-selector {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .urgency-option {
+            flex: 1;
+            min-width: 120px;
+        }
+        
+        .urgency-option input[type="radio"] {
+            display: none;
+        }
+        
+        .urgency-option label {
+            display: block;
+            padding: 10px 15px;
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: normal;
+        }
+        
+        .urgency-option input[type="radio"]:checked + label {
+            background: #1e3c72;
+            color: white;
+            border-color: #1e3c72;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(45deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 18px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(30,60,114,0.3);
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(30,60,114,0.4);
+        }
+        
+        /* Contact Info */
+        .contact-info {
+            background: white;
+        }
+        
+        .contact-info h3 {
+            color: #1e3c72;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border-right: 4px solid #ffd700;
+        }
+        
+        .info-icon {
+            font-size: 2rem;
+            color: #1e3c72;
+            margin-top: 0.2rem;
+        }
+        
+        .info-content h4 {
+            color: #1e3c72;
+            margin-bottom: 0.5rem;
+        }
+        
+        .info-content p {
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .info-content a {
+            color: #1e3c72;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .info-content a:hover {
+            color: #ffd700;
+        }
+        
+        /* Map Section */
+        .map-section {
+            background: #f8f9fa;
+            padding: 4rem 0;
+        }
+        
+        .map-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .map-info h3 {
+            color: #1e3c72;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+        
+        .map-info p {
+            color: #555;
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+        
+        .directions-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .directions-list li {
+            padding: 0.5rem 0;
+            color: #666;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .directions-list li::before {
+            content: '🚗';
+            font-size: 1.2rem;
+        }
+        
+        .map-placeholder {
+            width: 100%;
+            height: 350px;
+            background: linear-gradient(135deg, #1e3c72, #ffd700);
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .map-placeholder .map-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .map-btn {
+            background: white;
+            color: #1e3c72;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .map-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255,255,255,0.3);
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            padding: 4rem 0;
+            background: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #1e3c72;
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            margin-bottom: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item:hover {
+            border-color: #ffd700;
+        }
+        
+        .faq-question {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+        
+        .faq-question:hover {
+            background: #e9ecef;
+        }
+        
+        .faq-question h4 {
+            color: #1e3c72;
+            margin: 0;
+        }
+        
+        .faq-toggle {
+            font-size: 1.5rem;
+            color: #1e3c72;
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        .faq-answer.active {
+            padding: 1.5rem;
+            max-height: 200px;
+        }
+        
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+        
+        /* Emergency Contact */
+        .emergency-contact {
+            background: linear-gradient(135deg, #dc3545, #c82333);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .emergency-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .emergency-content h3 {
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+        
+        .emergency-content p {
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .emergency-btn {
+            background: white;
+            color: #dc3545;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .emergency-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255,255,255,0.3);
+        }
+        
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .contact-form {
+                padding: 2rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .map-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .urgency-selector {
+                flex-direction: column;
+            }
+            
+            .urgency-option {
+                min-width: auto;
+            }
+        }
+        
+        /* WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: #25d366;
+            color: white;
+            padding: 15px;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(37,211,102,0.4);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .whatsapp-float:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(37,211,102,0.6);
+        }
+
+        /* Success Message */
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            border: 1px solid #c3e6cb;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">
+                ⚖️ <span id="firm-name">משרד עורכי דין ליאור קלואי ארז</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">בית</a></li>
+                <li><a href="about.html">אודות</a></li>
+                <li><a href="services.html">שירותים</a></li>
+                <li><a href="testimonials.html">המלצות</a></li>
+                <li><a href="blog.html">מאמרים</a></li>
+                <li><a href="contact.html" class="active">צור קשר</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 id="page-title">צור קשר</h1>
+            <p id="intro-message">נשמח לעמוד לשירותכם ולהעניק ייעוץ מקצועי בכל שאלה משפטית</p>
+        </div>
+    </section>
+
+    <!-- Quick Contact -->
+    <section class="quick-contact">
+        <div class="container">
+            <div class="quick-contact-grid">
+                <div class="quick-contact-item">
+                    <div class="contact-icon">📞</div>
+                    <h3>התקשרו אלינו</h3>
+                    <a href="tel:0524694158" class="contact-link" id="phone-link">0524694158</a>
+                    <div class="contact-hours">זמינות 24/7 לחירום</div>
+                </div>
+                
+                <div class="quick-contact-item">
+                    <div class="contact-icon">📧</div>
+                    <h3>שלחו מייל</h3>
+                    <a href="mailto:info@lior-law.co.il" class="contact-link" id="email-link">info@lior-law.co.il</a>
+                    <div class="contact-hours">מענה תוך 24 שעות</div>
+                </div>
+                
+                <div class="quick-contact-item">
+                    <div class="contact-icon">💬</div>
+                    <h3>ווטסאפ</h3>
+                    <a href="https://wa.me/972524694158" class="contact-link" target="_blank">שלחו הודעה</a>
+                    <div class="contact-hours">מענה מיידי</div>
+                </div>
+                
+                <div class="quick-contact-item">
+                    <div class="contact-icon">📍</div>
+                    <h3>בואו לפגישה</h3>
+                    <span class="contact-link" id="office-address">הרימון 5, חריש</span>
+                    <div class="contact-hours" id="office-hours">א'-ה': 09:00-18:00<br>ו': 09:00-13:00</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Contact Section -->
+    <section class="contact-main">
+        <div class="container">
+            <div class="contact-container">
+                <!-- Contact Form -->
+                <div class="contact-form">
+                    <h3>שלחו לנו הודעה</h3>
+                    <div class="success-message" id="success-message">
+                        ההודעה נשלחה בהצלחה! נחזור אליכם בהקדם.
+                    </div>
+                    <form id="contact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="first-name">שם פרטי *</label>
+                                <input type="text" id="first-name" name="first-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="last-name">שם משפחה *</label>
+                                <input type="text" id="last-name" name="last-name" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">טלפון *</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">אימייל *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="legal-area">תחום משפטי</label>
+                            <select id="legal-area" name="legal-area">
+                                <option value="">בחרו תחום</option>
+                                <option value="משפט מסחרי">משפט מסחרי</option>
+                                <option value="משפט נדל״ן">משפט נדל״ן</option>
+                                <option value="משפט משפחה">משפט משפחה</option>
+                                <option value="משפט פלילי">משפט פלילי</option>
+                                <option value="דיני עבודה">דיני עבודה</option>
+                                <option value="תביעות נכות">תביעות נכות</option>
+                                <option value="אחר">אחר</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>רמת דחיפות</label>
+                            <div class="urgency-selector">
+                                <div class="urgency-option">
+                                    <input type="radio" id="low" name="urgency" value="נמוכה">
+                                    <label for="low">רגיל</label>
+                                </div>
+                                <div class="urgency-option">
+                                    <input type="radio" id="medium" name="urgency" value="בינונית" checked>
+                                    <label for="medium">בינוני</label>
+                                </div>
+                                <div class="urgency-option">
+                                    <input type="radio" id="high" name="urgency" value="גבוהה">
+                                    <label for="high">דחוף</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">תיאור הבעיה *</label>
+                            <textarea id="message" name="message" placeholder="אנא תארו את המצב המשפטי שלכם בצורה מפורטת..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">שלחו הודעה</button>
+                    </form>
+                </div>
+                
+                <!-- Contact Info -->
+                <div class="contact-info">
+                    <h3>פרטי התקשרות</h3>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">📞</div>
+                        <div class="info-content">
+                            <h4>טלפון</h4>
+                            <p><a href="tel:0524694158" id="phone-info">0524694158</a></p>
+                            <p>זמינות לחירום 24/7</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">📧</div>
+                        <div class="info-content">
+                            <h4>אימייל</h4>
+                            <p><a href="mailto:info@lior-law.co.il" id="email-info">info@lior-law.co.il</a></p>
+                            <p>מענה תוך 24 שעות</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">📍</div>
+                        <div class="info-content">
+                            <h4>כתובת המשרד</h4>
+                            <p id="address-info">הרימון 5, חריש</p>
+                            <p>חניה נוחה וגישה נוחה</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">🕒</div>
+                        <div class="info-content">
+                            <h4>שעות פעילות</h4>
+                            <p id="hours-info">א'-ה': 09:00-18:00<br>ו': 09:00-13:00<br>מוצ"ש: לפי תיאום</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">💬</div>
+                        <div class="info-content">
+                            <h4>ווטסאפ</h4>
+                            <p><a href="https://wa.me/972524694158" target="_blank">שלחו הודעה בווטסאפ</a></p>
+                            <p>מענה מיידי בשעות הפעילות</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <div class="map-container">
+                <div class="map-info">
+                    <h3>איך מגיעים אלינו</h3>
+                    <p id="directions-text">המשרד ממוקם במרכז העיר חריש, בקרבת תחבורה ציבורית וחניה נוחה.</p>
+                    <p><strong>הוראות הגעה:</strong></p>
+                    <ul class="directions-list">
+                        <li>מכביש 65 - יציאה חריש מרכז</li>
+                        <li>המשך ישר ברחוב הראשי</li>
+                        <li>פנייה ימינה לרחוב הרימון</li>
+                        <li>המשרד נמצא בבניין מספר 5</li>
+                    </ul>
+                </div>
+                <div class="map-placeholder">
+                    <div class="map-icon">🗺️</div>
+                    <div>מפה אינטראקטיבית</div>
+                    <a href="https://maps.google.com/?q=הרימון+5+חריש" target="_blank" class="map-btn">פתחו במפות גוגל</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="section-title">שאלות נפוצות</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>כמה עולה ייעוץ משפטי ראשוני?</h4>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>הייעוץ הראשוני (עד 30 דקות) ניתן ללא תשלום כדי להכיר את המקרה ולהעריך את האפשרויות. לאחר מכן נקבע מחיר הטיפול לפי מורכבות התיק.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>כמה זמן לוקח לקבל מענה?</h4>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>אנו מתחייבים לחזור אליכם תוך 24 שעות בימי עבודה. במקרי חירום אנו זמינים 24/7 בטלפון או בווטסאפ.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>האם אפשר לקבל ייעוץ טלפוני?</h4>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>כן, אנו מעניקים ייעוץ טלפוני ווידאו לנוחותכם. ניתן לתאם פגישה מקוונת או טלפונית המתאימה לזמינות שלכם.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>איך מתבצע התשלום?</h4>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>אנו מקבלים תשלום במזומן, המחאה, העברה בנקאית או כרטיס אשראי. ניתן לפרס תשלומים במקרים המתאימים.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>מה צריך להביא לפגישה הראשונה?</h4>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>מומלץ להביא את כל המסמכים הרלוונטיים למקרה: חוזים, מכתבים, צילומי מסמכים וכל מידע שיכול לעזור להבין את המצב.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Emergency Contact -->
+    <section class="emergency-contact">
+        <div class="container">
+            <div class="emergency-content">
+                <h3>מקרה חירום?</h3>
+                <p>במקרי חירום משפטיים אנו זמינים 24 שעות ביממה</p>
+                <a href="tel:0524694158" class="emergency-btn">
+                    <span>🚨</span>
+                    <span>התקשרו עכשיו</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 <span id="footer-firm-name">משרד עורכי דין ליאור קלואי ארז</span>. כל הזכויות שמורות.</p>
+            <p>אתר זה נבנה על ידי <strong>הדיגיטל שלך</strong> - פתרונות אתרים מקצועיים</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/972524694158?text=שלום, ברצוני לקבל ייעוץ משפטי" class="whatsapp-float" target="_blank">
+        <span style="font-size: 1.5rem;">💬</span>
+        <span>צ'אט בווטסאפ</span>
+    </a>
+
+    <!-- CMS Integration Script -->
+    <script>
+        // ברירת המחדל - נתונים קבועים
+        const defaultData = {
+            site: {
+                firm_name: "משרד עורכי דין ליאור קלואי ארז",
+                phone: "0524694158",
+                email: "info@lior-law.co.il",
+                address: "הרימון 5, חריש"
+            },
+            contact: {
+                content: {
+                    page_title: "צור קשר",
+                    intro_message: "נשמח לעמוד לשירותכם ולהעניק ייעוץ מקצועי בכל שאלה משפטית",
+                    office_hours: "א'-ה': 09:00-18:00\nו': 09:00-13:00\nמוצ\"ש: לפי תיאום",
+                    directions: "המשרד ממוקם במרכז העיר חריש, בקרבת תחבורה ציבורית וחניה נוחה."
+                },
+                location: {
+                    google_maps_link: "https://maps.google.com/?q=הרימון+5+חריש",
+                    latitude: null,
+                    longitude: null
+                }
+            }
+        };
+
+        // פונקציה לעדכון התוכן
+        function updateContent() {
+            try {
+                const siteData = defaultData.site;
+                const contactData = defaultData.contact;
+
+                // עדכון פרטי האתר
+                document.getElementById('firm-name').textContent = siteData.firm_name;
+                document.getElementById('footer-firm-name').textContent = siteData.firm_name;
+
+                // עדכון תוכן הדף
+                document.getElementById('page-title').textContent = contactData.content.page_title;
+                document.getElementById('intro-message').textContent = contactData.content.intro_message;
+
+                // עדכון פרטי יצירת קשר
+                const phoneElements = ['phone-link', 'phone-info'];
+                phoneElements.forEach(id => {
+                    const element = document.getElementById(id);
+                    if (element) {
+                        element.textContent = siteData.phone;
+                        element.href = `tel:${siteData.phone}`;
+                    }
+                });
+
+                const emailElements = ['email-link', 'email-info'];
+                emailElements.forEach(id => {
+                    const element = document.getElementById(id);
+                    if (element) {
+                        element.textContent = siteData.email;
+                        element.href = `mailto:${siteData.email}`;
+                    }
+                });
+
+                const addressElements = ['office-address', 'address-info'];
+                addressElements.forEach(id => {
+                    const element = document.getElementById(id);
+                    if (element) {
+                        element.textContent = siteData.address;
+                    }
+                });
+
+                // עדכון שעות פעילות
+                const hoursElements = ['office-hours', 'hours-info'];
+                hoursElements.forEach(id => {
+                    const element = document.getElementById(id);
+                    if (element) {
+                        element.innerHTML = contactData.content.office_hours.replace(/\n/g, '<br>');
+                    }
+                });
+
+                // עדכון הוראות הגעה
+                document.getElementById('directions-text').textContent = contactData.content.directions;
+
+                // עדכון לינקי WhatsApp
+                const whatsappLinks = document.querySelectorAll('a[href*="wa.me"]');
+                whatsappLinks.forEach(link => {
+                    link.href = `https://wa.me/972${siteData.phone.substring(1)}?text=שלום, ברצוני לקבל ייעוץ משפטי`;
+                });
+
+                // עדכון לינק מפות גוגל
+                const mapBtn = document.querySelector('.map-btn');
+                if (mapBtn && contactData.location.google_maps_link) {
+                    mapBtn.href = contactData.location.google_maps_link;
+                }
+
+                // עדכון לינקי חירום
+                const emergencyBtn = document.querySelector('.emergency-btn');
+                if (emergencyBtn) {
+                    emergencyBtn.href = `tel:${siteData.phone}`;
+                }
+
+            } catch (error) {
+                console.log('CMS לא זמין, משתמש בנתונים קבועים');
+            }
+        }
+
+        // הפעל עדכון תוכן כשהדף נטען
+        document.addEventListener('DOMContentLoaded', function() {
+            updateContent();
+
+            // פונקציונליות FAQ
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                const answer = item.querySelector('.faq-answer');
+                
+                question.addEventListener('click', function() {
+                    const isActive = item.classList.contains('active');
+                    
+                    // סגור את כל השאלות האחרות
+                    faqItems.forEach(otherItem => {
+                        otherItem.classList.remove('active');
+                        otherItem.querySelector('.faq-answer').classList.remove('active');
+                    });
+                    
+                    // פתח את השאלה הנוכחית אם היא לא הייתה פתוחה
+                    if (!isActive) {
+                        item.classList.add('active');
+                        answer.classList.add('active');
+                    }
+                });
+            });
+
+            // פונקציונליות טופס יצירת קשר
+            document.getElementById('contact-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // כאן אפשר להוסיף שליחה לשרת או CMS
+                const formData = new FormData(this);
+                
+                // הצג הודעת הצלחה
+                const successMessage = document.getElementById('success-message');
+                successMessage.style.display = 'block';
+                
+                // גלול להודעת ההצלחה
+                successMessage.scrollIntoView({ behavior: 'smooth' });
+                
+                // נקה את הטופס
+                this.reset();
+                
+                // הסתר את ההודעה אחרי 5 שניות
+                setTimeout(() => {
+                    successMessage.style.display = 'none';
+                }, 5000);
+            });
+        });
+
+        // אנימציות כשגוללים
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
+                }
+            });
+        }, observerOptions);
+
+        // צפה בכל הקלפים
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.quick-contact-item, .info-item, .faq-item');
+            cards.forEach(card => observer.observe(card));
+        });
+    </script>
+</body>
+</html>

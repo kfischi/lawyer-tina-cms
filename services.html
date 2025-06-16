@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>תחומי התמחות - עו״ד ליאור קלואי ארז</title>
+    <meta name="description" content="תחומי התמחות של עו״ד ליאור קלואי ארז: משפט מסחרי, נדל״ן, משפחה, פלילי, עבודה ותביעות נכות">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚖️</text></svg>">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-menu a:hover, .nav-menu a.active {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, rgba(30,60,114,0.95), rgba(42,82,152,0.95)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><rect fill="%23f0f8ff" width="1200" height="400"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 4rem 0;
+            position: relative;
+        }
+        
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Services Grid */
+        .services-section {
+            padding: 4rem 0;
+            background: #f8f9fa;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .service-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #1e3c72, #ffd700);
+        }
+        
+        .service-card:hover {
+            border-color: #ffd700;
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .service-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+        
+        .service-card h3 {
+            color: #1e3c72;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .service-description {
+            color: #555;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+        
+        .service-details {
+            margin-top: 1.5rem;
+        }
+        
+        .service-details h4 {
+            color: #1e3c72;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+        
+        .service-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .service-list li {
+            padding: 0.4rem 0;
+            color: #666;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .service-list li::before {
+            content: '✓';
+            color: #ffd700;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        /* Contact CTA Section */
+        .contact-cta {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .cta-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .cta-content h3 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            color: #ffd700;
+        }
+        
+        .cta-content p {
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            color: #1e3c72;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255,215,0,0.4);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255,215,0,0.6);
+        }
+        
+        .cta-button.secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid #ffd700;
+        }
+        
+        .cta-button.secondary:hover {
+            background: #ffd700;
+            color: #1e3c72;
+        }
+        
+        /* Process Section */
+        .process-section {
+            padding: 4rem 0;
+            background: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #1e3c72;
+        }
+        
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .process-step {
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #1e3c72, #2a5298);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+        
+        .process-step h4 {
+            color: #1e3c72;
+            margin-bottom: 1rem;
+        }
+        
+        .process-step p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: #25d366;
+            color: white;
+            padding: 15px;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(37,211,102,0.4);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .whatsapp-float:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(37,211,102,0.6);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">
+                ⚖️ <span id="firm-name">משרד עורכי דין ליאור קלואי ארז</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">בית</a></li>
+                <li><a href="about.html">אודות</a></li>
+                <li><a href="services.html" class="active">שירותים</a></li>
+                <li><a href="testimonials.html">המלצות</a></li>
+                <li><a href="blog.html">מאמרים</a></li>
+                <li><a href="contact.html">צור קשר</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 id="page-title">תחומי התמחות</h1>
+            <p id="page-description">המשרד מתמחה במגוון רחב של תחומי משפט, תוך מתן שירות מקצועי ואישי לכל לקוח</p>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section">
+        <div class="container">
+            <div class="services-grid" id="services-grid">
+                
+                <div class="service-card">
+                    <span class="service-icon">🏢</span>
+                    <h3>משפט מסחרי</h3>
+                    <p class="service-description">ייצוג חברות, עסקאות מסחריות, הקמת חברות, מיזוגים ורכישות</p>
+                    <div class="service-details">
+                        <h4>השירותים שלנו כוללים:</h4>
+                        <ul class="service-list">
+                            <li>הקמת חברות וגופים עסקיים</li>
+                            <li>עסקאות מיזוגים ורכישות</li>
+                            <li>חוזים מסחריים ושותפויות</li>
+                            <li>ייעוץ עסקי שוטף</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <span class="service-icon">🏠</span>
+                    <h3>משפט נדל"ן</h3>
+                    <p class="service-description">עסקאות נדל"ן, חוזי שכירות, ייצוג בוועדת התכנון והבנייה</p>
+                    <div class="service-details">
+                        <h4>השירותים שלנו כוללים:</h4>
+                        <ul class="service-list">
+                            <li>עסקאות קנייה ומכירה</li>
+                            <li>חוזי שכירות ופינוי</li>
+                            <li>ייצוג מול ועדות תכנון</li>
+                            <li>פיתוח ובנייה</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <span class="service-icon">👥</span>
+                    <h3>משפט משפחה</h3>
+                    <p class="service-description">גירושין, הסדרי ראייה, מזונות, יחסי ממון וחלוקת רכוש</p>
+                    <div class="service-details">
+                        <h4>השירותים שלנו כוללים:</h4>
+                        <ul class="service-list">
+                            <li>הליכי גירושין</li>
+                            <li>הסדרי ראייה והורות</li>
+                            <li>חלוקת רכוש ומזונות</li>
+                            <li>הסכמי כתובה</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <span class="service-icon">⚖️</span>
+                    <h3>משפט פלילי</h3>
+                    <p class="service-description">ייצוג בהליכים פליליים, ערעורים וליווי בחקירות משטרה</p>
+                    <div class="service-details">
+                        <h4>השירותים שלנו כוללים:</h4>
+                        <ul class="service-list">
+                            <li>ייצוג בבתי משפט</li>
+                            <li>ליווי בחקירות משטרה</li>
+                            <li>ערעורים פליליים</li>
+                            <li>ייעוץ משפטי מונע</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <span class="service-icon">💼</span>
+                    <h3>דיני עבודה</h3>
+                    <p class="service-description">יחסי עובד-מעביד, פיטורים, תביעות עבודה ודיני עבודה</p>
+                    <div class="service-details">
+                        <h4>השירותים שלנו כוללים:</h4>
+                        <ul class="service-list">
+                            <li>תביעות עבודה</li>
+                            <li>הליכי פיטורין</li>
+                            <li>חוזי עבודה</li>
+                            <li>יחסי עובד-מעביד</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <span class="service-icon">🩺</span>
+                    <h3>תביעות נכות</h3>
+                    <p class="service-description">תביעות נכות, ערעורים לוועדות רפואיות וזכויות סוציאליות</p>
+                    <div class="service-details">
+                        <h4>השירותים שלנו כוללים:</h4>
+                        <ul class="service-list">
+                            <li>תביעות נכות כללית</li>
+                            <li>ערעורים רפואיים</li>
+                            <li>זכויות סוציאליות</li>
+                            <li>ביטוח לאומי</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process-section">
+        <div class="container">
+            <h2 class="section-title">איך אנחנו עובדים</h2>
+            <div class="process-grid">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h4>פגישת היכרות</h4>
+                    <p>פגישה ראשונה ללא התחייבות להכרת המקרה והערכת הסיכויים</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h4>תכנון אסטרטגיה</h4>
+                    <p>בניית תוכנית עבודה מפורטת ואסטרטגיה משפטית מותאמת</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h4>ביצוע והליך</h4>
+                    <p>ביצוע ההליך המשפטי תוך עדכון שוטף ושקיפות מלאה</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h4>השגת תוצאות</h4>
+                    <p>עבודה מקצועית להשגת התוצאה הטובה ביותר עבור הלקוח</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section class="contact-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h3>צריכים ייעוץ משפטי?</h3>
+                <p>נשמח לעמוד לשירותכם ולהעניק ייעוץ מקצועי בכל תחום משפטי</p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="cta-button">קבעו פגישת ייעוץ</a>
+                    <a href="tel:0524694158" class="cta-button secondary">התקשרו עכשיו</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 <span id="footer-firm-name">משרד עורכי דין ליאור קלואי ארז</span>. כל הזכויות שמורות.</p>
+            <p>אתר זה נבנה על ידי <strong>הדיגיטל שלך</strong> - פתרונות אתרים מקצועיים</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/972524694158?text=שלום, ברצוני לקבל ייעוץ משפטי" class="whatsapp-float" target="_blank">
+        <span style="font-size: 1.5rem;">💬</span>
+        <span>צ'אט בווטסאפ</span>
+    </a>
+
+    <!-- CMS Integration Script -->
+    <script>
+        // ברירת המחדל - נתונים קבועים
+        const defaultData = {
+            site: {
+                firm_name: "משרד עורכי דין ליאור קלואי ארז",
+                phone: "0524694158"
+            },
+            services: {
+                content: {
+                    page_title: "תחומי התמחות",
+                    description: "המשרד מתמחה במגוון רחב של תחומי משפט, תוך מתן שירות מקצועי ואישי לכל לקוח"
+                },
+                services_list: [
+                    {
+                        name: "משפט מסחרי",
+                        description: "ייצוג חברות, עסקאות מסחריות, הקמת חברות, מיזוגים ורכישות",
+                        icon: "🏢",
+                        specific_services: [
+                            "הקמת חברות וגופים עסקיים",
+                            "עסקאות מיזוגים ורכישות", 
+                            "חוזים מסחריים ושותפויות",
+                            "ייעוץ עסקי שוטף"
+                        ]
+                    },
+                    {
+                        name: "משפט נדל\"ן",
+                        description: "עסקאות נדל\"ן, חוזי שכירות, ייצוג בוועדת התכנון והבנייה",
+                        icon: "🏠",
+                        specific_services: [
+                            "עסקאות קנייה ומכירה",
+                            "חוזי שכירות ופינוי",
+                            "ייצוג מול ועדות תכנון",
+                            "פיתוח ובנייה"
+                        ]
+                    },
+                    {
+                        name: "משפט משפחה",
+                        description: "גירושין, הסדרי ראייה, מזונות, יחסי ממון וחלוקת רכוש",
+                        icon: "👥",
+                        specific_services: [
+                            "הליכי גירושין",
+                            "הסדרי ראייה והורות",
+                            "חלוקת רכוש ומזונות",
+                            "הסכמי כתובה"
+                        ]
+                    },
+                    {
+                        name: "משפט פלילי",
+                        description: "ייצוג בהליכים פליליים, ערעורים וליווי בחקירות משטרה",
+                        icon: "⚖️",
+                        specific_services: [
+                            "ייצוג בבתי משפט",
+                            "ליווי בחקירות משטרה",
+                            "ערעורים פליליים",
+                            "ייעוץ משפטי מונע"
+                        ]
+                    },
+                    {
+                        name: "דיני עבודה",
+                        description: "יחסי עובד-מעביד, פיטורים, תביעות עבודה ודיני עבודה",
+                        icon: "💼",
+                        specific_services: [
+                            "תביעות עבודה",
+                            "הליכי פיטורין",
+                            "חוזי עבודה",
+                            "יחסי עובד-מעביד"
+                        ]
+                    },
+                    {
+                        name: "תביעות נכות",
+                        description: "תביעות נכות, ערעורים לוועדות רפואיות וזכויות סוציאליות",
+                        icon: "🩺",
+                        specific_services: [
+                            "תביעות נכות כללית",
+                            "ערעורים רפואיים",
+                            "זכויות סוציאליות",
+                            "ביטוח לאומי"
+                        ]
+                    }
+                ]
+            }
+        };
+
+        // פונקציה לעדכון התוכן
+        function updateContent() {
+            try {
+                const siteData = defaultData.site;
+                const servicesData = defaultData.services;
+
+                // עדכון פרטי האתר
+                document.getElementById('firm-name').textContent = siteData.firm_name;
+                document.getElementById('footer-firm-name').textContent = siteData.firm_name;
+
+                // עדכון תוכן הדף
+                document.getElementById('page-title').textContent = servicesData.content.page_title;
+                document.getElementById('page-description').textContent = servicesData.content.description;
+
+                // עדכון WhatsApp
+                const whatsappBtn = document.querySelector('.whatsapp-float');
+                whatsappBtn.href = `https://wa.me/972${siteData.phone.substring(1)}?text=שלום, ברצוני לקבל ייעוץ משפטי`;
+
+                // עדכון כפתור טלפון ב-CTA
+                const phoneButton = document.querySelector('a[href^="tel:"]');
+                if (phoneButton) {
+                    phoneButton.href = `tel:${siteData.phone}`;
+                }
+
+            } catch (error) {
+                console.log('CMS לא זמין, משתמש בנתונים קבועים');
+            }
+        }
+
+        // הפעל עדכון תוכן כשהדף נטען
+        document.addEventListener('DOMContentLoaded', updateContent);
+
+        // אנימציות כשגוללים
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
+                }
+            });
+        }, observerOptions);
+
+        // צפה בכל הקלפים
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.service-card, .process-step');
+            cards.forEach(card => observer.observe(card));
+        });
+    </script>
+</body>
+</html>

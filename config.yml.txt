@@ -1,0 +1,48 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Media settings
+media_folder: images
+public_folder: /images
+
+# Collections
+collections:
+  - name: "pages"
+    label: "ניהול דפים"
+    files:
+      - label: "פרטי יצירת קשר"
+        name: "contact-info"
+        file: "_data/contact.json"
+        fields:
+          - {label: "שם המשרד", name: "firm_name", widget: "string"}
+          - {label: "שם עורך הדין", name: "lawyer_name", widget: "string"}
+          - {label: "טלפון", name: "phone", widget: "string"}
+          - {label: "אימייל", name: "email", widget: "string"}
+          - {label: "כתובת", name: "address", widget: "string"}
+          - {label: "שנות ניסיון", name: "experience_years", widget: "number"}
+
+  - name: "testimonials"
+    label: "המלצות לקוחות"
+    folder: "_testimonials"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "שם הלקוח", name: "client_name", widget: "string"}
+      - {label: "תחום", name: "practice_area", widget: "string"}
+      - {label: "טקסט ההמלצה", name: "testimonial", widget: "text"}
+      - {label: "דירוג", name: "rating", widget: "number", min: 1, max: 5}
+      - {label: "תאריך", name: "date", widget: "datetime"}
+
+  - name: "blog"
+    label: "מאמרים"
+    folder: "_posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "כותרת", name: "title", widget: "string"}
+      - {label: "תאריך פרסום", name: "date", widget: "datetime"}
+      - {label: "קטגוריה", name: "category", widget: "select", options: ["משפט מסחרי", "משפט נדלן", "משפט משפחה", "משפט פלילי", "דיני עבודה", "תביעות נכות"]}
+      - {label: "תקציר", name: "excerpt", widget: "text"}
+      - {label: "תמונה", name: "image", widget: "image", required: false}
+      - {label: "תוכן המאמר", name: "body", widget: "markdown"}

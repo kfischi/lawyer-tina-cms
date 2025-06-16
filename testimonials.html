@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>המלצות לקוחות - עו״ד ליאור קלואי ארז</title>
+    <meta name="description" content="המלצות לקוחות על השירות המקצועי של עו״ד ליאור קלואי ארז. ביקורות ודירוגים מלקוחות מרוצים">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚖️</text></svg>">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-menu a:hover, .nav-menu a.active {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, rgba(30,60,114,0.95), rgba(42,82,152,0.95)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><rect fill="%23f0f8ff" width="1200" height="400"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 4rem 0;
+            position: relative;
+        }
+        
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Stats Overview */
+        .stats-overview {
+            background: #f8f9fa;
+            padding: 3rem 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+        
+        .stat-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #1e3c72;
+            display: block;
+        }
+        
+        .stat-label {
+            color: #666;
+            margin-top: 0.5rem;
+        }
+        
+        /* Featured Testimonial */
+        .featured-testimonial {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .featured-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .featured-quote {
+            font-size: 1.5rem;
+            font-style: italic;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .featured-client {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #ffd700;
+        }
+        
+        .featured-case {
+            margin-top: 0.5rem;
+            opacity: 0.9;
+        }
+        
+        /* Testimonials Section */
+        .testimonials-section {
+            padding: 4rem 0;
+            background: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #1e3c72;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .testimonial-card {
+            background: #f8f9fa;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            border: 2px solid transparent;
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            font-size: 6rem;
+            color: #ffd700;
+            line-height: 1;
+            font-family: serif;
+        }
+        
+        .testimonial-card:hover {
+            border-color: #ffd700;
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        
+        .testimonial-content {
+            margin-bottom: 1.5rem;
+            font-style: italic;
+            color: #555;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        
+        .testimonial-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .client-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .client-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #1e3c72, #ffd700);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .client-details h4 {
+            color: #1e3c72;
+            margin-bottom: 0.3rem;
+        }
+        
+        .client-details .case-type {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .rating {
+            display: flex;
+            gap: 3px;
+        }
+        
+        .star {
+            color: #ffd700;
+            font-size: 1.2rem;
+        }
+        
+        .star.empty {
+            color: #ddd;
+        }
+        
+        .testimonial-date {
+            color: #999;
+            font-size: 0.9rem;
+            text-align: left;
+        }
+        
+        /* CTA Section */
+        .testimonial-cta {
+            background: #f8f9fa;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .cta-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .cta-content h3 {
+            color: #1e3c72;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+        
+        .cta-content p {
+            margin-bottom: 2rem;
+            color: #555;
+            font-size: 1.1rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            color: #1e3c72;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255,215,0,0.4);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255,215,0,0.6);
+        }
+        
+        /* Review Form Section */
+        .review-form-section {
+            background: white;
+            padding: 4rem 0;
+        }
+        
+        .review-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #f8f9fa;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        
+        .review-form h3 {
+            text-align: center;
+            color: #1e3c72;
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: bold;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #1e3c72;
+        }
+        
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        
+        .rating-input {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+        }
+        
+        .rating-star {
+            font-size: 2rem;
+            color: #ddd;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+        
+        .rating-star:hover,
+        .rating-star.active {
+            color: #ffd700;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(45deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(30,60,114,0.4);
+        }
+        
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .testimonial-footer {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .featured-quote {
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: #25d366;
+            color: white;
+            padding: 15px;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(37,211,102,0.4);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .whatsapp-float:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(37,211,102,0.6);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">
+                ⚖️ <span id="firm-name">משרד עורכי דין ליאור קלואי ארז</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">בית</a></li>
+                <li><a href="about.html">אודות</a></li>
+                <li><a href="services.html">שירותים</a></li>
+                <li><a href="testimonials.html" class="active">המלצות</a></li>
+                <li><a href="blog.html">מאמרים</a></li>
+                <li><a href="contact.html">צור קשר</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 id="page-title">המלצות לקוחות</h1>
+            <p id="page-subtitle">מה הלקוחות שלנו אומרים עלינו</p>
+            <p id="intro-text">שביעות הרצון של הלקוחות שלנו היא המדד החשוב ביותר להצלחתנו</p>
+        </div>
+    </section>
+
+    <!-- Stats Overview -->
+    <section class="stats-overview">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-icon">⭐</div>
+                    <span class="stat-number">4.9</span>
+                    <span class="stat-label">דירוג ממוצע</span>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">💬</div>
+                    <span class="stat-number">127</span>
+                    <span class="stat-label">המלצות</span>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">😊</div>
+                    <span class="stat-number">98%</span>
+                    <span class="stat-label">לקוחות מרוצים</span>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">🏆</div>
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">תיקים מוצלחים</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Testimonial -->
+    <section class="featured-testimonial">
+        <div class="container">
+            <div class="featured-content">
+                <div class="featured-quote">
+                    "עו״ד ליאור קלואי ארז ליוותה אותי בתיק מורכב של גירושין. המקצועיות, הסבלנות והמחויבות שלה הפכו תהליך קשה לחוויה נסבלת. הצליחה להשיג לי הסדר הוגן ומכבד. אני ממליצה עליה בחום לכל מי שצריך ייצוג משפטי איכותי."
+                </div>
+                <div class="featured-client">רחל כהן</div>
+                <div class="featured-case">תיק גירושין מורכב</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Grid -->
+    <section class="testimonials-section">
+        <div class="container">
+            <h2 class="section-title">עוד המלצות מלקוחותינו</h2>
+            <div class="testimonials-grid" id="testimonials-grid">
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        עו״ד ליאור עזרה לי בעסקת נדל״ן מורכבת. המקצועיות והיעילות שלה מרשימות. היא זמינה, מסבירה בבהירות ופועלת במהירות. התוצאה הייתה מעבר לציפיות. ממליץ בחום!
+                    </div>
+                    <div class="testimonial-footer">
+                        <div class="client-info">
+                            <div class="client-avatar">ד.מ</div>
+                            <div class="client-details">
+                                <h4>דני מנור</h4>
+                                <div class="case-type">עסקת נדל״ן</div>
+                            </div>
+                        </div>
+                        <div class="rating">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-date">נובמבר 2023</div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        פניתי לעו״ד ליאור בנושא של דיני עבודה. היא ליוותה אותי לאורך כל התהליך בסבלנות ומקצועיות. הצליחה לפתור את הבעיה ללא צורך בהתדיינות. תודה רבה!
+                    </div>
+                    <div class="testimonial-footer">
+                        <div class="client-info">
+                            <div class="client-avatar">מ.ל</div>
+                            <div class="client-details">
+                                <h4>מיכל לוי</h4>
+                                <div class="case-type">דיני עבודה</div>
+                            </div>
+                        </div>
+                        <div class="rating">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-date">ספטמבר 2023</div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        החברה שלנו עבדה עם עו״ד ליאור על הסכם שותפות מורכב. הייעוץ היה מדויק, הטיפול מקצועי והתוצאה מעולה. בהחלט נמשיך לעבוד איתה בעתיד.
+                    </div>
+                    <div class="testimonial-footer">
+                        <div class="client-info">
+                            <div class="client-avatar">א.ר</div>
+                            <div class="client-details">
+                                <h4>אבי רוזן</h4>
+                                <div class="case-type">משפט מסחרי</div>
+                            </div>
+                        </div>
+                        <div class="rating">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-date">אוקטובר 2023</div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        תודה לעו״ד ליאור על הייצוג המקצועי בתיק של תביעת נכות. היא לחמה עבורי במקצועיות ובנחישות, והצליחה להשיג תוצאה מעולה. מומלצת מאוד!
+                    </div>
+                    <div class="testimonial-footer">
+                        <div class="client-info">
+                            <div class="client-avatar">ש.ב</div>
+                            <div class="client-details">
+                                <h4>שרון בן דוד</h4>
+                                <div class="case-type">תביעת נכות</div>
+                            </div>
+                        </div>
+                        <div class="rating">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-date">דצמבר 2023</div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        עו״ד ליאור ייצגה אותי בתיק פלילי מורכב. הגישה המקצועית שלה והיכרות העמוקה עם החוק הביאו לתוצאה מצוינת. אני אסיר תודה!
+                    </div>
+                    <div class="testimonial-footer">
+                        <div class="client-info">
+                            <div class="client-avatar">י.ג</div>
+                            <div class="client-details">
+                                <h4>יוסי גרין</h4>
+                                <div class="case-type">משפט פלילי</div>
+                            </div>
+                        </div>
+                        <div class="rating">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-date">ינואר 2024</div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        המשרד של עו״ד ליאור טיפל בהליך הקמת חברה עבורנו. השירות היה מהיר, יעיל ומקצועי. קיבלנו הדרכה מלאה וליווי צמוד. ממליצים!
+                    </div>
+                    <div class="testimonial-footer">
+                        <div class="client-info">
+                            <div class="client-avatar">ת.ח</div>
+                            <div class="client-details">
+                                <h4>תמר חזן</h4>
+                                <div class="case-type">הקמת חברה</div>
+                            </div>
+                        </div>
+                        <div class="rating">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-date">פברואר 2024</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="testimonial-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h3>רוצים להצטרף ללקוחות המרוצים שלנו?</h3>
+                <p>נשמח לעמוד לשירותכם ולהעניק את השירות המקצועי שמגיע לכם</p>
+                <a href="contact.html" class="cta-button">קבעו פגישת ייעוץ</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Review Form -->
+    <section class="review-form-section">
+        <div class="container">
+            <div class="review-form">
+                <h3>רוצים לשתף את החוויה שלכם?</h3>
+                <form id="review-form">
+                    <div class="form-group">
+                        <label for="client-name">שם מלא:</label>
+                        <input type="text" id="client-name" name="client-name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="case-type">תחום המקרה:</label>
+                        <select id="case-type" name="case-type" required>
+                            <option value="">בחרו תחום</option>
+                            <option value="משפט מסחרי">משפט מסחרי</option>
+                            <option value="משפט נדל״ן">משפט נדל״ן</option>
+                            <option value="משפט משפחה">משפט משפחה</option>
+                            <option value="משפט פלילי">משפט פלילי</option>
+                            <option value="דיני עבודה">דיני עבודה</option>
+                            <option value="תביעות נכות">תביעות נכות</option>
+                            <option value="אחר">אחר</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>דירוג:</label>
+                        <div class="rating-input" id="rating-input">
+                            <span class="rating-star" data-rating="1">★</span>
+                            <span class="rating-star" data-rating="2">★</span>
+                            <span class="rating-star" data-rating="3">★</span>
+                            <span class="rating-star" data-rating="4">★</span>
+                            <span class="rating-star" data-rating="5">★</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="review-content">תוכן ההמלצה:</label>
+                        <textarea id="review-content" name="review-content" placeholder="שתפו אותנו בחוויה שלכם..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">שלחו המלצה</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 <span id="footer-firm-name">משרד עורכי דין ליאור קלואי ארז</span>. כל הזכויות שמורות.</p>
+            <p>אתר זה נבנה על ידי <strong>הדיגיטל שלך</strong> - פתרונות אתרים מקצועיים</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/972524694158?text=שלום, ברצוני לקבל ייעוץ משפטי" class="whatsapp-float" target="_blank">
+        <span style="font-size: 1.5rem;">💬</span>
+        <span>צ'אט בווטסאפ</span>
+    </a>
+
+    <!-- CMS Integration Script -->
+    <script>
+        // ברירת המחדל - נתונים קבועים
+        const defaultData = {
+            site: {
+                firm_name: "משרד עורכי דין ליאור קלואי ארז",
+                phone: "0524694158"
+            },
+            testimonials: {
+                content: {
+                    page_title: "המלצות לקוחות",
+                    subtitle: "מה הלקוחות שלנו אומרים עלינו",
+                    intro_text: "שביעות הרצון של הלקוחות שלנו היא המדד החשוב ביותר להצלחתנו"
+                },
+                testimonials_list: [
+                    {
+                        client_name: "דני מנור",
+                        content: "עו״ד ליאור עזרה לי בעסקת נדל״ן מורכבת. המקצועיות והיעילות שלה מרשימות. היא זמינה, מסבירה בבהירות ופועלת במהירות. התוצאה הייתה מעבר לציפיות. ממליץ בחום!",
+                        rating: 5,
+                        case_type: "עסקת נדל״ן",
+                        date: "2023-11-15T00:00:00Z"
+                    },
+                    {
+                        client_name: "מיכל לוי",
+                        content: "פניתי לעו״ד ליאור בנושא של דיני עבודה. היא ליוותה אותי לאורך כל התהליך בסבלנות ומקצועיות. הצליחה לפתור את הבעיה ללא צורך בהתדיינות. תודה רבה!",
+                        rating: 5,
+                        case_type: "דיני עבודה",
+                        date: "2023-09-20T00:00:00Z"
+                    },
+                    {
+                        client_name: "אבי רוזן",
+                        content: "החברה שלנו עבדה עם עו״ד ליאור על הסכם שותפות מורכב. הייעוץ היה מדויק, הטיפול מקצועי והתוצאה מעולה. בהחלט נמשיך לעבוד איתה בעתיד.",
+                        rating: 5,
+                        case_type: "משפט מסחרי",
+                        date: "2023-10-10T00:00:00Z"
+                    },
+                    {
+                        client_name: "שרון בן דוד",
+                        content: "תודה לעו״ד ליאור על הייצוג המקצועי בתיק של תביעת נכות. היא לחמה עבורי במקצועיות ובנחישות, והצליחה להשיג תוצאה מעולה. מומלצת מאוד!",
+                        rating: 5,
+                        case_type: "תביעת נכות",
+                        date: "2023-12-05T00:00:00Z"
+                    },
+                    {
+                        client_name: "יוסי גרין",
+                        content: "עו״ד ליאור ייצגה אותי בתיק פלילי מורכב. הגישה המקצועית שלה והיכרות העמוקה עם החוק הביאו לתוצאה מצוינת. אני אסיר תודה!",
+                        rating: 5,
+                        case_type: "משפט פלילי",
+                        date: "2024-01-15T00:00:00Z"
+                    },
+                    {
+                        client_name: "תמר חזן",
+                        content: "המשרד של עו״ד ליאור טיפל בהליך הקמת חברה עבורנו. השירות היה מהיר, יעיל ומקצועי. קיבלנו הדרכה מלאה וליווי צמוד. ממליצים!",
+                        rating: 5,
+                        case_type: "הקמת חברה",
+                        date: "2024-02-20T00:00:00Z"
+                    }
+                ]
+            }
+        };
+
+        // פונקציה לעדכון התוכן
+        function updateContent() {
+            try {
+                const siteData = defaultData.site;
+                const testimonialsData = defaultData.testimonials;
+
+                // עדכון פרטי האתר
+                document.getElementById('firm-name').textContent = siteData.firm_name;
+                document.getElementById('footer-firm-name').textContent = siteData.firm_name;
+
+                // עדכון תוכן הדף
+                document.getElementById('page-title').textContent = testimonialsData.content.page_title;
+                document.getElementById('page-subtitle').textContent = testimonialsData.content.subtitle;
+                document.getElementById('intro-text').textContent = testimonialsData.content.intro_text;
+
+                // עדכון WhatsApp
+                const whatsappBtn = document.querySelector('.whatsapp-float');
+                whatsappBtn.href = `https://wa.me/972${siteData.phone.substring(1)}?text=שלום, ברצוני לקבל ייעוץ משפטי`;
+
+            } catch (error) {
+                console.log('CMS לא זמין, משתמש בנתונים קבועים');
+            }
+        }
+
+        // הפעל עדכון תוכן כשהדף נטען
+        document.addEventListener('DOMContentLoaded', updateContent);
+
+        // פונקציונליות של דירוג בטופס
+        document.addEventListener('DOMContentLoaded', function() {
+            const ratingStars = document.querySelectorAll('.rating-star');
+            let selectedRating = 0;
+
+            ratingStars.forEach(star => {
+                star.addEventListener('click', function() {
+                    selectedRating = parseInt(this.dataset.rating);
+                    updateStarDisplay();
+                });
+
+                star.addEventListener('mouseover', function() {
+                    const hoverRating = parseInt(this.dataset.rating);
+                    highlightStars(hoverRating);
+                });
+            });
+
+            document.getElementById('rating-input').addEventListener('mouseleave', function() {
+                updateStarDisplay();
+            });
+
+            function highlightStars(rating) {
+                ratingStars.forEach((star, index) => {
+                    star.classList.toggle('active', index < rating);
+                });
+            }
+
+            function updateStarDisplay() {
+                highlightStars(selectedRating);
+            }
+
+            // טיפול בשליחת הטופס
+            document.getElementById('review-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                if (selectedRating === 0) {
+                    alert('אנא בחרו דירוג');
+                    return;
+                }
+
+                // כאן אפשר להוסיף שליחה לשרת או CMS
+                alert('תודה על ההמלצה! היא תתפרסם לאחר אישור.');
+                this.reset();
+                selectedRating = 0;
+                updateStarDisplay();
+            });
+        });
+
+        // אנימציות כשגוללים
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
+                }
+            });
+        }, observerOptions);
+
+        // צפה בכל הקלפים
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.testimonial-card, .stat-item');
+            cards.forEach(card => observer.observe(card));
+        });
+    </script>
+</body>
+</html>
