@@ -1,0 +1,14 @@
+{
+  "name": "lawyer-cms-final",
+  "version": "1.0.0", 
+  "description": "אתר מקצועי לעורכי דין עם TinaCMS",
+  "scripts": {
+    "dev": "tinacms dev",
+    "build": "tinacms build",
+    "start": "tinacms start"
+  },
+  "dependencies": {
+    "@tinacms/cli": "^1.5.30",
+    "tinacms": "^1.5.30"
+  }
+}
